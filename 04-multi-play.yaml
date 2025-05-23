@@ -3,7 +3,7 @@
   connection: local # Managing its own code, no need of credentials
   tasks:
   - name: PLAY1 and TASK1
-    absible.builtin.debug:
+    ansible.builtin.debug:
       msg: "Hello from PLAY1 and TASK1"
 
 - name: PLAY2
@@ -11,5 +11,5 @@
   connection: local # Managing its own code, no need of credentials
   tasks:
   - name: PLAY2 and TASK1
-    absible.builtin.debug:
+    ansible.builtin.debug:
       msg: "Hello from PLAY2 and TASK1"
