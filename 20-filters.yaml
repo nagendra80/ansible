@@ -1,0 +1,57 @@
+- name: filters
+  hosts: local
+  connection: local
+  tasks: 
+  - name: handle undefined variable
+    ansible.builtin.debug:
+      msg: "Hello {{ preson | default('Nagendra') }}"
+
+  - name: convert string to list
+    vars:
+      fruits: "apple, banana, orange" #String
+    ansible.builtin.debug:
+      msg: "Fruits are: {{ fruits | split(',') }}"
+
+
+  - name: convert map into list
+    vars:
+      course:
+        name: ansible
+        duration: 10hrs
+        trainer: nagendra
+    ansible.builtin.debug:
+      msg: "Course info: {{ course | dict2items }}"
+
+  - name: convert list into map
+    vars:
+      course:
+      - {'key': 'name', 'value': 'ansible'}
+      - {'key': 'duration', 'value': '10hrs'}
+      - {'key': 'trainer', 'value': 'nagendra'}
+    ansible.builtin.debug:
+      msg: "Course info: {{ course | items2dict }}"
+
+  - name: convert upper to lower
+    tags:
+    - uppertolower
+    vars:
+      name: "Nagendra Kadumuru"
+    ansible.builtin.debug:
+      msg: "Hello {{ name | lower }}"
+
+  - name: convert lower to upper
+    tags:
+    - loertoupper
+    vars:
+      name: "Nagendra Kadumuru"
+    ansible.builtin.debug:
+      msg: "Hello {{ name | upper }}"
+
+  - name: print min and max
+    vars:
+      numbers: [256,3,98,30,46845,57]
+    ansible.builtin.debug:
+      msg: "Min is: {{ numbers | min }}, Max is: {{ numbers | max}}"
+
+  
+
